@@ -7,6 +7,13 @@ const validation = require("../validations/produks");
 const authentication = require("../middlewares/authentication");
 const uploadImage = require("../middlewares/multer");
 
+router.get(
+  "/",
+  authentication,
+  validation.getAll(),
+  validate,
+  controller.getAll
+);
 router.post(
   "/",
   authentication,
