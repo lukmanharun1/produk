@@ -13,6 +13,7 @@
     "reset": "sequelize db:drop && sequelize db:create && npm run migrate && npm run seed:all"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "debug": "~2.6.9",
     "dotenv": "^16.0.1",
     "express": "~4.16.1",
