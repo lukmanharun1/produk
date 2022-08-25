@@ -40,4 +40,12 @@ router.put(
   controller.update
 );
 
+router.delete(
+  "/:id",
+  authentication,
+  validation.destroy(),
+  validate,
+  controller.destroy
+);
+
 module.exports = router;
