@@ -7,6 +7,12 @@ const register = () => [
   body("password").isStrongPassword(),
 ];
 
+const login = () => [
+  body("email").isEmail(),
+  body("password").isStrongPassword(),
+];
+
 module.exports = {
   register,
+  login,
 };
