@@ -173,8 +173,7 @@ const update = async (req, res) => {
       };
     }
     if (isDeleteImage) {
-      // hapus file yang lama
-      console.log(findProduksById.image_produk);
+      // hapus file image yang lama
       await hapusFile(`public/produks/${findProduksById.image_produk}`);
     }
     return response(res, {
@@ -194,9 +193,42 @@ const update = async (req, res) => {
   }
 };
 
+const destroy = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const findProduksById = await Produks.findByPk(id);
+    if (!findProduksById) {
+      throw {
+        message: "Data produk tidak ada!",
+        statusCode: 404,
+      };
+    }
+
+    // hapus data produk | file image
+    await Promise.all([
+      findProduksById.destroy(),
+      hapusFile(`public/produks/${findProduksById.image_produk}`),
+    ]);
+    return response(res, {
+      status: "success",
+      message: "Data produk berhasil dihapus!",
+    });
+  } catch (error) {
+    return response(
+      res,
+      {
+        status: "error",
+        message: error.message,
+      },
+      error.statusCode || 500
+    );
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  destroy,
 };
