@@ -14,6 +14,14 @@ router.get(
   validate,
   controller.getAll
 );
+
+router.get(
+  "/:id",
+  authentication,
+  validation.getById(),
+  validate,
+  controller.getById
+);
 router.post(
   "/",
   authentication,
@@ -21,6 +29,15 @@ router.post(
   validation.create(),
   validate,
   controller.create
+);
+
+router.put(
+  "/:id",
+  authentication,
+  uploadImage,
+  validation.update(),
+  validate,
+  controller.update
 );
 
 module.exports = router;
