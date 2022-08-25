@@ -56,7 +56,7 @@ const login = async (req, res) => {
     const findUserByEmail = await Users.findOne({
       where: { email },
     });
-    if (!email) {
+    if (!findUserByEmail) {
       throw {
         message: "Email atau password salah!",
         statusCode: 400,
@@ -74,11 +74,15 @@ const login = async (req, res) => {
     if (!isVerifyPassword) {
       throw new Error("Email atau Password salah!");
     }
-    return response(res, {
-      status: "success",
-      message: "Login berhasil!",
-      token,
-    });
+    return response(
+      res,
+      {
+        status: "success",
+        message: "Login berhasil!",
+        token,
+      },
+      201
+    );
   } catch (error) {
     return response(
       res,
