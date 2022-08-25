@@ -11,7 +11,6 @@ const getAll = async (req, res) => {
     const { count, rows } = await Produks.findAndCountAll({
       offset: (page - 1) * page,
       limit: per_page,
-      distinct: true,
       attributes: [
         "id",
         "kode_produk",
