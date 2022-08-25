@@ -19,9 +19,12 @@ const update = () => [
   body("qty").isInt({ gt: 0 }),
 ];
 
+const destroy = () => [param("id").isUUID()];
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
+  destroy,
 };
