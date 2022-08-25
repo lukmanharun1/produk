@@ -18,6 +18,10 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        image_produk: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
       })
     );
   },
