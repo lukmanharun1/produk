@@ -1,6 +1,50 @@
-const { Produks } = require("../models");
+const { Produks, Sequelize } = require("../models");
 const response = require("../helpers/response");
 const hapusFile = require("../helpers/hapus_file");
+const paginate = require("../helpers/paginate");
+
+const { HOST, PORT } = process.env;
+const getAll = async (req, res) => {
+  try {
+    const { page, per_page } = req.query;
+    const pathUpload = `${HOST}:${PORT}/produks/`;
+    const { count, rows } = await Produks.findAndCountAll({
+      offset: (page - 1) * page,
+      limit: per_page,
+      distinct: true,
+      attributes: [
+        "id",
+        "kode_produk",
+        "nama_produk",
+        [
+          Sequelize.fn("CONCAT", pathUpload, Sequelize.col("image_produk")),
+          "src_image_produk",
+        ],
+      ],
+    });
+    if (rows.length === 0) {
+      throw {
+        message: "Data produk tidak ada!",
+        statusCode: 404,
+      };
+    }
+    const data = paginate({ data: rows, count, page, per_page });
+    return response(res, {
+      status: "success",
+      data,
+    });
+  } catch (error) {
+    return response(
+      res,
+      {
+        status: "error",
+        message: error.message,
+      },
+      error.statusCode || 500
+    );
+  }
+};
+
 const create = async (req, res) => {
   try {
     const { kode_produk, nama_produk, qty } = req.body;
@@ -49,5 +93,6 @@ const create = async (req, res) => {
 };
 
 module.exports = {
+  getAll,
   create,
 };
