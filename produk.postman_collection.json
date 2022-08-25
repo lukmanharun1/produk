@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "26d1e2d7-06ca-485d-8da8-049e88fdc6e9",
+		"name": "produk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lukman@gmail.com\",\n    \"first_name\": \"lukman\",\n    \"last_name\": \"harun\",\n    \"password\": \"Lukman@harun1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}users/register",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lukman@gmail.com\",\n    \"password\": \"Lukman@harun1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}users/login",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "produks",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "kode_produk",
+									"value": "spt-41",
+									"type": "text"
+								},
+								{
+									"key": "nama_produk",
+									"value": "sepatu ukuran 41",
+									"type": "text"
+								},
+								{
+									"key": "qty",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "image_produk",
+									"type": "file",
+									"src": "/home/lukman/Downloads/sepatu-keyt.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}produks/",
+							"host": [
+								"{{host}}produks"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}produks?page=1&per_page=5",
+							"host": [
+								"{{host}}produks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "kode_produk",
+									"value": "vor-40",
+									"type": "text"
+								},
+								{
+									"key": "nama_produk",
+									"value": "vorca 41",
+									"type": "text"
+								},
+								{
+									"key": "qty",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "image_produk",
+									"type": "file",
+									"src": "/home/lukman/Downloads/vorsca.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}produks/8fd74344-d8f6-4416-8766-61b26c47ff9c",
+							"host": [
+								"{{host}}produks"
+							],
+							"path": [
+								"8fd74344-d8f6-4416-8766-61b26c47ff9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}produks/7b20f402-7dc7-4e27-ad55-04d113e37be2",
+							"host": [
+								"{{host}}produks"
+							],
+							"path": [
+								"7b20f402-7dc7-4e27-ad55-04d113e37be2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}produks/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+							"host": [
+								"{{host}}produks"
+							],
+							"path": [
+								"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx1a21hbkBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibHVrbWFuIiwibGFzdF9uYW1lIjoiaGFydW4iLCJpYXQiOjE2NjE0MzIxNzcsImV4cCI6MTY2MjAzNjk3N30.C9httl-zNGiTvgiJrXNzKl35nN_InbGcDDHKD5eFkds",
+			"type": "string"
+		}
+	]
+}
